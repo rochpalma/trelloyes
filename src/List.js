@@ -8,8 +8,12 @@ function List(props) {
         return (
             <Card 
                 key     = {card.id}
+                id      = {card.id}
                 title   = {card.title} 
-                content = {card.content} 
+                content = {card.content}
+                onClickDelete={
+                    props.onClickDelete
+                }
             />
         )
     });
@@ -21,12 +25,22 @@ function List(props) {
             </header>
             <div className="List-cards">
                 {cardsList}
-                <button type="button" className="List-add-button">
-                + Add Random Card
-            </button>
+                <button 
+                    type="button" 
+                    className="List-add-button"
+                    onClick={
+                        () => props.onClickRandomCard(props.id)
+                    }
+                >
+                    + Add Random Card
+                </button>
             </div>
         </section>
     )
+}
+
+List.defaultProps = {
+    onClickRandomCard: () => {},
 }
 
 export default List;
